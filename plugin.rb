@@ -51,5 +51,12 @@ after_initialize do
     get "viewthread.php" => "discuz#redirect"
     get "forumdisplay.php" => "discuz#redirect"
     get "redirect.php" => "discuz#redirect"
+    get "forum-:fid-:page.html" => "discuz#redirect"
+    get "thread-:tid-:page-:extra.html" => "discuz#redirect"
+    get "group-:fid-:page.html" => "discuz#redirect"
+    get "space-username-:username.html" => "discuz#redirect"
+    get "space-uid-:uid.html" => "discuz#redirect"
+    get "archiver/fid-:fid.html" => "discuz#redirect"
+    get "archiver/tid-:tid.html" => "discuz#redirect"
   end
 end
