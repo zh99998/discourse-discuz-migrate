@@ -58,5 +58,6 @@ after_initialize do
     get "space-uid-:uid.html" => "discuz#redirect"
     get "archiver/fid-:fid.html" => "discuz#redirect"
     get "archiver/tid-:tid.html" => "discuz#redirect"
+    get "plugin.php" => "discuz#redirect"
   end
 end
