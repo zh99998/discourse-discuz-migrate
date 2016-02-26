@@ -27,13 +27,25 @@ after_initialize do
     skip_before_filter :check_xhr
     def redirect
       if params[:pid] and p = PostCustomField.find_by_name_and_value('import_id', params[:pid])
-        return redirect_to p.post.url, status: :moved_permanently
+        if p.post and p.post.topic
+          return redirect_to p.post.url, status: :moved_permanently
+        else
+          raise Discourse::NotFound
+        end
       end
       if params[:tid] and t = TopicCustomField.find_by_name_and_value('import_id', params[:tid])
-        return redirect_to t.topic.url, status: :moved_permanently
+        if t.topic
+          return redirect_to t.topic.url, status: :moved_permanently
+        else
+          raise Discourse::NotFound
+        end
       end
       if params[:fid] and c = CategoryCustomField.find_by_name_and_value('import_id', params[:fid])
-        return redirect_to c.category.url, status: :moved_permanently
+        if c.category
+          return redirect_to c.category.url, status: :moved_permanently
+        else
+          raise Discourse::NotFound
+        end
       end
       if params[:uid] and u = UserCustomField.find_by_name_and_value('import_id', params[:uid])
         return redirect_to user_path(u.user.username), status: :moved_permanently
