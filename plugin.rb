@@ -24,7 +24,7 @@ after_initialize do
 
   require_dependency 'application_controller'
   class ::DiscuzController < ::ApplicationController
-    skip_before_filter :check_xhr
+    skip_before_action :check_xhr
     def redirect
       if params[:pid] and p = PostCustomField.find_by_name_and_value('import_id', params[:pid])
         if p.post and p.post.topic
